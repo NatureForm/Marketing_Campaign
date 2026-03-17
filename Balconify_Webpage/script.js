@@ -12,11 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start sliding on mousedown / touchstart
     const startSlide = (e) => {
         isSliding = true;
+        // Add class to body to prevent global text selection
+        document.body.classList.add('sliding');
     };
 
     // Stop sliding on mouseup / touchend
     const stopSlide = () => {
         isSliding = false;
+        document.body.classList.remove('sliding');
     };
 
     // Handle sliding movement
@@ -50,6 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('mousemove', moveSlide);
     window.addEventListener('touchmove', moveSlide);
+
+    // Prevent default drag and highlight behaviors on the container
+    sliderContainer.addEventListener('mousedown', (e) => {
+        // Only prevent default if it's the left mouse button, to avoid breaking context menus
+        if (e.button === 0) e.preventDefault();
+    });
+
+    // Prevent image Ghost Dragging globally in the slider
+    const sliderImages = sliderContainer.querySelectorAll('img');
+    sliderImages.forEach(img => {
+        img.addEventListener('dragstart', (e) => e.preventDefault());
+    });
 
     // Dynamic width for the before image to prevent skewing
     const beforeImg = document.querySelector('.slider-image-before img');
