@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balconify - Gestalte deinen individuellen Balkon</title>
+    <meta name="description"
+        content="Plane deine persönliche Wohlfühloase online - passend zu deinen Bedürfnissen. Wir bieten maßgeschneiderte Lösungen, modular aus hochwertigem Holz, mit einem visuellen Online-Konfigurator.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Balconify</h1>
+            </div>
+            <nav class="nav">
+                <a href="#konfigurator" class="nav-link">Konfigurator</a>
+                <a href="#vorteile" class="nav-link">Vorteile</a>
+                <a href="#galerie" class="nav-link">Galerie</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg-overlay"></div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <p class="eyebrow">FÜR DESIGN- UND EINRICHTUNGSLIEBHABER MIT BALKON</p>
+                    <h2 class="main-heading">Gestalte deinen<br>individuellen<br>Balkon</h2>
+                    <p class="sub-heading">Plane deine persönliche Wohlfühloase online - passend zu deinen Bedürfnissen
+                    </p>
+
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Maßgeschneiderte Lösungen</li>
+                        <li><i class="fa-solid fa-check"></i> Modular aus hochwertigem Holz</li>
+                        <li><i class="fa-solid fa-check"></i> Visueller Online-Konfigurator</li>
+                    </ul>
+
+                    <a href="#konfigurator" class="cta-button">Jetzt individuellen Balkon konfigurieren</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Before / After Slider Section -->
+        <section class="before-after-section" id="galerie">
+            <div class="container">
+                <h3 class="section-title">Erlebe die Verwandlung</h3>
+                <div class="slider-container" id="ba-slider">
+                    <!-- The after image -->
+                    <div class="slider-image slider-image-after">
+                        <img src="assets/split-1.jpg" alt="Nachher">
+                        <div class="label">NACHHER</div>
+                    </div>
+                    <!-- The before image -->
+                    <div class="slider-image slider-image-before" id="slider-before">
+                        <img src="assets/split-0.jpg" alt="Vorher">
+                        <div class="label">VORHER</div>
+                    </div>
+                    <!-- The slider handle -->
+                    <div class="slider-handle" id="slider-handle">
+                        <div class="slider-handle-line"></div>
+                        <div class="slider-handle-button">
+                            <i class="fa-solid fa-arrows-left-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configurator Mockup Section -->
+        <section class="configurator-section" id="konfigurator">
+            <div class="container configurator-container">
+                <div class="config-phone-mockup">
+                    <div class="phone-screen">
+                        <div class="phone-header">
+                            <h4>Balconify</h4>
+                            <p>Gestalte deinen perfekten Balkon.</p>
+                        </div>
+
+                        <div class="phone-dimensions">
+                            <label>Deine Balkonmaß angeben</label>
+                            <div class="dimension-inputs">
+                                <div>Breite: <span class="val">460 cm</span> <i class="fa-solid fa-caret-down"></i>
+                                </div>
+                                <div>Tiefe: <span class="val">220 cm</span> <i class="fa-solid fa-caret-down"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="phone-modules">
+                            <div class="module-card" data-module="eck">
+                                <div class="module-icon"><i class="fa-solid fa-couch"></i></div>
+                                <span>Eckmodul</span>
+                            </div>
+                            <div class="module-card active" data-module="sitz">
+                                <div class="module-icon"><i class="fa-solid fa-chair"></i></div>
+                                <span>Sitzmodul</span>
+                            </div>
+                            <div class="module-card" data-module="liege">
+                                <div class="module-icon"><i class="fa-solid fa-bed"></i></div>
+                                <span>Liegemodul</span>
+                            </div>
+                            <div class="module-card" data-module="pflanz">
+                                <div class="module-icon"><i class="fa-solid fa-leaf"></i></div>
+                                <span>Pflanzmodul</span>
+                            </div>
+                        </div>
+
+                        <div class="phone-preview" id="phone-preview">
+                            <!-- Image will be updated via JS based on selection -->
+                            <img src="assets/IMG-20260307-WA0003.jpg" alt="Preview" class="preview-img">
+                        </div>
+
+                        <button class="phone-cta">Kostenlosen Balkonplan erhalten</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="container newsletter-container">
+                <h3>Bleib auf dem Laufenden!</h3>
+                <p>Melde dich für unseren Newsletter an und erhalte exklusive Tipps und Angebote für deine
+                    Balkongestaltung.</p>
+
+                <div id="newsletter-success" class="newsletter-success" style="display: none;">
+                    <i class="fa-solid fa-check-circle"></i> Danke für deine Anmeldung! Du bist nun auf unserer Liste.
+                </div>
+
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" class="newsletter-input" id="newsletter-email"
+                        placeholder="Deine E-Mail-Adresse" required>
+                    <button type="submit" class="newsletter-submit">Abonnieren</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-logo">Balconify</div>
+            <p>&copy; 2026 Balconify. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <!-- Main Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
