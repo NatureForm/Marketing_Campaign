@@ -50,12 +50,16 @@ body {
     background-color: var(--bg-color);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* ==========================================================================
@@ -232,7 +236,7 @@ body.sliding {
     position: relative;
     width: 100%;
     max-width: 900px;
-    height: 500px;
+    aspect-ratio: 9 / 5;
     margin: 0 auto;
     border-radius: 12px;
     overflow: hidden;
@@ -345,7 +349,9 @@ body.sliding {
 }
 
 .config-phone-mockup {
-    width: 380px;
+    width: 100%;
+    max-width: 380px;
+    box-sizing: border-box;
     background-color: #1a1a1a;
     border-radius: 40px;
     padding: 12px;
@@ -356,7 +362,8 @@ body.sliding {
 .phone-screen {
     background-color: #F9FAFB;
     border-radius: 32px;
-    height: 750px;
+    aspect-ratio: 356 / 750;
+    height: auto;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -688,4 +695,112 @@ body.sliding {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: var(--spacing-sm);
+}
+
+/* ==========================================================================
+   Responsive / Mobile Utilities
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 65vh;
+    }
+
+    .main-heading {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .sub-heading {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .eyebrow {
+        font-size: 0.75rem;
+    }
+
+    .feature-list li {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .hero-content {
+        padding: var(--spacing-sm) 0;
+    }
+
+    .config-phone-mockup {
+        padding: 8px;
+        border-radius: 32px;
+    }
+
+    .phone-screen {
+        border-radius: 24px;
+    }
+
+    .phone-header {
+        padding: 20px 15px 12px;
+    }
+
+    .phone-header h4 {
+        font-size: 1.2rem;
+    }
+
+    .phone-header p {
+        font-size: 0.8rem;
+    }
+
+    .phone-dimensions {
+        padding: 15px;
+        margin-bottom: 5px;
+    }
+
+    .phone-modules {
+        padding: 0 10px 15px;
+        gap: 4px;
+    }
+
+    .module-card {
+        padding: 8px 4px;
+    }
+
+    .module-card span {
+        font-size: 0.75rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .trust-elements {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-top: var(--spacing-lg);
+    }
+
+    .trust-item {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .config-phone-mockup {
+        padding: 6px;
+        border-radius: 24px;
+    }
+
+    .phone-screen {
+        border-radius: 18px;
+    }
+
+    .phone-modules {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 0 15px 15px;
+    }
+
+    .dimension-inputs {
+        flex-direction: column;
+        gap: 5px;
+    }
 }
