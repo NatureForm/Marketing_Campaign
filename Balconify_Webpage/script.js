@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==============================================
        Newsletter Form Logic
        ============================================== */
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxMzuQIk_NPRH-On8BDQv6qW_ZIyB67xVH-HvOey6ErRK1YZqModx5ngyCjNQ7yX2Qm/exec';
     const newsletterForm = document.getElementById('newsletter-form');
     const newsletterSuccess = document.getElementById('newsletter-success');
     const newsletterEmail = document.getElementById('newsletter-email');
@@ -111,18 +112,27 @@ document.addEventListener('DOMContentLoaded', () => {
             // Basic validation
             if (!newsletterEmail.value) return;
 
-            // Simulate API request
             const submitBtn = newsletterForm.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerText;
             submitBtn.innerText = 'Wird gesendet...';
             submitBtn.disabled = true;
 
-            setTimeout(() => {
-                // Hide form, show success message
-                newsletterForm.style.display = 'none';
-                newsletterSuccess.style.display = 'block';
-                newsletterEmail.value = '';
-            }, 500);
+            const data = new FormData(newsletterForm);
+
+            fetch(scriptURL, { method: 'POST', body: data })
+                .then(response => {
+                    console.log('Success!', response);
+                    // Hide form, show success message
+                    newsletterForm.style.display = 'none';
+                    newsletterSuccess.style.display = 'block';
+                    newsletterForm.reset();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                    alert("Es gab einen Fehler bei der Anmeldung. Bitte versuche es später noch einmal.");
+                });
         });
     }
 
