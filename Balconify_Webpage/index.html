@@ -26,9 +26,7 @@
                 <h1>Balconify</h1>
             </div>
             <nav class="nav">
-                <a href="#konfigurator" class="nav-link">Konfigurator</a>
-                <a href="#vorteile" class="nav-link">Vorteile</a>
-                <a href="#galerie" class="nav-link">Galerie</a>
+                <!-- Navigation links disabled for Painted Door squeeze page -->
             </nav>
         </div>
     </header>
@@ -41,7 +39,7 @@
             <div class="container hero-container">
                 <div class="hero-content">
                     <p class="eyebrow">FÜR DESIGN- UND EINRICHTUNGSLIEBHABER MIT BALKON</p>
-                    <h2 class="main-heading">Gestalte deinen<br>individuellen<br>Balkon</h2>
+                    <h2 class="main-heading">Gestalte deine individuelle<br>Balkon-Oase</h2>
                     <p class="sub-heading">Plane deine persönliche Wohlfühloase online - passend zu deinen Bedürfnissen
                     </p>
 
@@ -51,7 +49,7 @@
                         <li><i class="fa-solid fa-check"></i> Visueller Online-Konfigurator</li>
                     </ul>
 
-                    <a href="#konfigurator" class="cta-button">Jetzt individuellen Balkon konfigurieren</a>
+                    <button id="hero-submit-btn" class="cta-button">Jetzt konfigurieren & 15% Rabatt sichern</button>
                 </div>
             </div>
         </section>
@@ -125,30 +123,63 @@
                             <img src="assets/IMG-20260307-WA0003.jpg" alt="Preview" class="preview-img">
                         </div>
 
-                        <button class="phone-cta">Kostenlosen Balkonplan erhalten</button>
+                        <button id="configurator-submit-btn" class="phone-cta">Verfügbarkeit & Preis prüfen</button>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Newsletter Section -->
-        <section class="newsletter-section">
-            <div class="container newsletter-container">
-                <h3>Bleib auf dem Laufenden!</h3>
-                <p>Melde dich für unseren Newsletter an und erhalte exklusive Tipps und Angebote für deine
-                    Balkongestaltung.</p>
-
-                <div id="newsletter-success" class="newsletter-success" style="display: none;">
-                    <i class="fa-solid fa-check-circle"></i> Danke für deine Anmeldung! Du bist nun auf unserer Liste.
+                <!-- Social Proof / Trust Elements -->
+                <div class="trust-elements">
+                    <div class="trust-item">
+                        <i class="fa-solid fa-tree"></i>
+                        <span>Nachhaltiges Holz</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                        <span>Werkzeugloser Aufbau</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-cloud-sun-rain"></i>
+                        <span>Wetterfest</span>
+                    </div>
                 </div>
 
-                <form id="newsletter-form" class="newsletter-form">
-                    <input type="email" name="email" class="newsletter-input" id="newsletter-email"
-                        placeholder="Deine E-Mail-Adresse" required>
-                    <button type="submit" class="newsletter-submit">Abonnieren</button>
-                </form>
             </div>
         </section>
+
+    </main>
+
+    <!-- Waitlist Modal Pop-up -->
+    <div id="waitlist-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close">&times;</button>
+            <div id="modal-body-form">
+                <h3 class="modal-headline">Bald ist es soweit!</h3>
+                <p class="modal-subheadline">
+                    Unser Konfigurator und die erste Produktion stehen in den Startlöchern. Trag dich unverbindlich ein,
+                    damit wir dir Bescheid geben können, sobald es losgeht – und sichere dir als Dankeschön für dein
+                    Interesse <strong>15% Rabatt</strong> auf deine ersten Module.
+                </p>
+                <form id="waitlist-form" class="waitlist-form">
+                    <input type="email" name="email" class="waitlist-input" id="waitlist-email"
+                        placeholder="Deine E-Mail-Adresse" required>
+
+                    <div class="gdpr-checkbox-container">
+                        <input type="checkbox" id="gdpr-check" name="gdpr" required>
+                        <label for="gdpr-check">Ich stimme zu, dass meine E-Mail-Adresse für den Newsletter/Warteliste
+                            gespeichert wird. Abmeldung jederzeit möglich.</label>
+                    </div>
+
+                    <button type="submit" class="waitlist-submit">15% Rabatt sichern & auf die Warteliste</button>
+                </form>
+            </div>
+
+            <div id="modal-success" class="modal-success" style="display: none;">
+                <i class="fa-solid fa-check-circle success-icon"></i>
+                <h3>Danke für deine Anmeldung!</h3>
+                <p>Du stehst auf unserer VIP-Liste! Checke dein Postfach für deinen Rabattcode und weitere Updates.</p>
+            </div>
+        </div>
+    </div>
     </main>
 
     <!-- Footer -->
@@ -156,6 +187,12 @@
         <div class="container footer-container">
             <div class="footer-logo">Balconify</div>
             <p>&copy; 2026 Balconify. Alle Rechte vorbehalten.</p>
+            <div class="footer-links" style="margin-top: 10px; font-size: 0.85rem;">
+                <a href="impressum.html"
+                    style="color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 10px;">Impressum</a>
+                <a href="datenschutz.html"
+                    style="color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 10px;">Datenschutzerklärung</a>
+            </div>
         </div>
     </footer>
 

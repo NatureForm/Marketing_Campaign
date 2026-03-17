@@ -479,91 +479,185 @@ h4 {
 }
 
 /* ==========================================================================
-   Newsletter Section
+   Trust Elements
    ========================================================================== */
-.newsletter-section {
-    background-color: var(--primary-dark);
-    color: white;
-    padding: var(--spacing-xl) 0;
-    text-align: center;
+.trust-elements {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-md) 0;
+    border-top: 1px solid var(--border-color);
 }
 
-.newsletter-container {
-    max-width: 600px;
-    margin: 0 auto;
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: var(--text-secondary);
 }
 
-.newsletter-section h3 {
-    font-size: 2rem;
+.trust-item i {
+    color: var(--primary-green);
+    font-size: 1.25rem;
+}
+
+/* ==========================================================================
+   Waitlist Modal
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-xl);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--text-primary);
+}
+
+.modal-headline {
+    font-size: 1.75rem;
+    color: var(--primary-dark);
     margin-bottom: var(--spacing-sm);
-    color: white;
 }
 
-.newsletter-section p {
+.modal-subheadline {
     font-size: 1rem;
+    color: var(--text-secondary);
     margin-bottom: var(--spacing-lg);
-    opacity: 0.9;
+    line-height: 1.5;
 }
 
-.newsletter-form {
+.waitlist-form {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
-    background: rgba(255, 255, 255, 0.1);
-    padding: var(--spacing-lg);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-@media (min-width: 640px) {
-    .newsletter-form {
-        flex-direction: row;
-        align-items: stretch;
-    }
-}
-
-.newsletter-input {
-    flex: 1;
-    padding: 14px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+.waitlist-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.9);
     font-size: 1rem;
-    color: var(--text-primary);
     font-family: var(--font-main);
+    transition: border-color 0.2s;
 }
 
-.newsletter-input:focus {
+.waitlist-input:focus {
     outline: none;
-    border-color: var(--accent-yellow);
-    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 2px rgba(44, 76, 59, 0.1);
 }
 
-.newsletter-submit {
-    padding: 14px 28px;
+.gdpr-checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-sm);
+}
+
+.gdpr-checkbox-container input[type="checkbox"] {
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.gdpr-checkbox-container label {
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.waitlist-submit {
+    width: 100%;
+    padding: 16px;
     background-color: var(--accent-yellow);
     color: var(--primary-dark);
     border: none;
     border-radius: 6px;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.05rem;
     cursor: pointer;
     transition: all var(--transition-fast);
+    margin-top: var(--spacing-sm);
 }
 
-.newsletter-submit:hover {
+.waitlist-submit:hover:not(:disabled) {
     background-color: var(--accent-yellow-hover);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
 }
 
-.newsletter-success {
-    background: rgba(163, 201, 174, 0.2);
-    border: 1px solid #A3C9AE;
-    color: #A3C9AE;
-    padding: 20px;
-    border-radius: 12px;
-    font-weight: 500;
+.waitlist-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.modal-success {
+    text-align: center;
+    padding: var(--spacing-md) 0;
+}
+
+.success-icon {
+    font-size: 3rem;
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-md);
+}
+
+.modal-success h3 {
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.modal-success p {
+    color: var(--text-secondary);
 }
 
 /* ==========================================================================

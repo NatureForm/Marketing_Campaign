@@ -98,34 +98,85 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==============================================
-       Newsletter Form Logic
+       Waitlist Modal & Form Logic
        ============================================== */
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxMzuQIk_NPRH-On8BDQv6qW_ZIyB67xVH-HvOey6ErRK1YZqModx5ngyCjNQ7yX2Qm/exec';
-    const newsletterForm = document.getElementById('newsletter-form');
-    const newsletterSuccess = document.getElementById('newsletter-success');
-    const newsletterEmail = document.getElementById('newsletter-email');
+    const waitlistModal = document.getElementById('waitlist-modal');
+    const openModalBtn = document.getElementById('configurator-submit-btn');
+    const heroSubmitBtn = document.getElementById('hero-submit-btn');
+    const closeModalBtn = document.getElementById('modal-close');
+    const waitlistForm = document.getElementById('waitlist-form');
+    const waitlistSuccess = document.getElementById('modal-success');
+    const waitlistEmail = document.getElementById('waitlist-email');
+    const modalBodyForm = document.getElementById('modal-body-form');
 
-    if (newsletterForm && newsletterSuccess && newsletterEmail) {
-        newsletterForm.addEventListener('submit', (e) => {
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxMzuQIk_NPRH-On8BDQv6qW_ZIyB67xVH-HvOey6ErRK1YZqModx5ngyCjNQ7yX2Qm/exec';
+
+    // Open Modal Function
+    const openModal = (source) => {
+        console.log(`Analytics Event: [Intent] Waitlist Triggered from ${source}`);
+        waitlistModal.classList.add('active');
+    };
+
+    if (openModalBtn && waitlistModal) {
+        openModalBtn.addEventListener('click', () => openModal('Configurator'));
+    }
+
+    if (heroSubmitBtn && waitlistModal) {
+        heroSubmitBtn.addEventListener('click', () => openModal('Hero Section'));
+    }
+
+    // Close Modal
+    const closeModal = () => {
+        waitlistModal.classList.remove('active');
+        // Reset state after transition finishes to allow multiple uses without reloading
+        setTimeout(() => {
+            modalBodyForm.style.display = 'block';
+            waitlistSuccess.style.display = 'none';
+            waitlistForm.reset();
+        }, 300);
+    };
+
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+    }
+
+    // Close Modal on outside click
+    if (waitlistModal) {
+        waitlistModal.addEventListener('click', (e) => {
+            if (e.target === waitlistModal) {
+                closeModal();
+            }
+        });
+    }
+
+    // Form Submission
+    if (waitlistForm && waitlistSuccess && waitlistEmail && modalBodyForm) {
+        waitlistForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
             // Basic validation
-            if (!newsletterEmail.value) return;
+            if (!waitlistEmail.value) return;
 
-            const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+            const submitBtn = waitlistForm.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerText;
             submitBtn.innerText = 'Wird gesendet...';
             submitBtn.disabled = true;
 
-            const data = new FormData(newsletterForm);
+            const data = new FormData(waitlistForm);
 
             fetch(scriptURL, { method: 'POST', body: data })
                 .then(response => {
                     console.log('Success!', response);
-                    // Hide form, show success message
-                    newsletterForm.style.display = 'none';
-                    newsletterSuccess.style.display = 'block';
-                    newsletterForm.reset();
+                    console.log("Analytics Event: [Conversion] Waitlist Email Submitted");
+                    // Hide form area, show success area
+                    modalBodyForm.style.display = 'none';
+                    waitlistSuccess.style.display = 'block';
+
+                    // Reset button state silently in background for next potential open
+                    setTimeout(() => {
+                        submitBtn.innerText = originalBtnText;
+                        submitBtn.disabled = false;
+                    }, 500);
                 })
                 .catch(error => {
                     console.error('Error!', error.message);
