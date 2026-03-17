@@ -77,12 +77,11 @@ h4 {
    Header Navigation
    ========================================================================== */
 .header {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background-color: var(--primary-dark);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-container {
@@ -94,7 +93,7 @@ h4 {
 
 .logo h1 {
     font-size: 1.5rem;
-    color: var(--primary-dark);
+    color: white;
 }
 
 .nav {
@@ -104,13 +103,13 @@ h4 {
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
     transition: color var(--transition-fast);
 }
 
 .nav-link:hover {
-    color: var(--primary-dark);
+    color: var(--accent-yellow);
 }
 
 /* ==========================================================================
