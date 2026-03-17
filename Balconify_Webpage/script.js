@@ -70,10 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // These represent different states we could show depending on the module clicked
     // Reusing the provided Idea images for the mockup effect
     const imageMap = {
-        'eck': 'assets/IMG-20260307-WA0002.jpg',
-        'sitz': 'assets/IMG-20260307-WA0003.jpg',
+        'eck': 'assets/After/rental-condo-exterior-after.png',
+        'sitz': 'assets/IMG-20260308-WA0005.jpg',
         'liege': 'assets/IMG-20260308-WA0004.jpg',
-        'pflanz': 'assets/IMG-20260308-WA0005.jpg'
+        'tisch': 'assets/After/balcony-integrated-table-after.png'
     };
 
     moduleCards.forEach(card => {
