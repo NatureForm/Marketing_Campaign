@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageMap = {
         'eck': 'assets/After/rental-condo-exterior-after.png',
         'sitz': 'assets/IMG-20260308-WA0005.jpg',
-        'liege': 'assets/IMG-20260308-WA0004.jpg',
+        'liege': 'assets/After/back-rest-after2.png',
         'tisch': 'assets/After/balcony-integrated-table-after.png'
     };
 
