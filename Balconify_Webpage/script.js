@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // These represent different states we could show depending on the module clicked
     // Reusing the provided Idea images for the mockup effect
     const imageMap = {
-        'eck': 'assets/After/rental-condo-exterior-after.png',
+        'eck': 'assets/eckmodul.png',
         'sitz': 'assets/IMG-20260308-WA0005.jpg',
         'liege': 'assets/After/back-rest-after2.png',
         'tisch': 'assets/After/balcony-integrated-table-after.png'

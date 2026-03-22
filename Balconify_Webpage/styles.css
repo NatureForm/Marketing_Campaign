@@ -61,6 +61,15 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    /* Sticky Footer Setup */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    /* Pushes the footer to the bottom when content is short */
 }
 
 .container {
@@ -270,28 +279,31 @@ h4 {
 }
 
 .features-container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-lg);
 }
 
 .feature-card {
-    flex: 1;
     text-align: center;
     padding: var(--spacing-md) var(--spacing-lg);
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    gap: 0;
 }
 
 .feature-card .feature-icon {
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 64px;
     height: 64px;
+    margin: 0 auto var(--spacing-md) auto;
     border-radius: 50%;
     background-color: #F0FDF4;
     color: var(--primary-green);
     font-size: 1.5rem;
-    margin-bottom: var(--spacing-md);
 }
 
 .feature-card h3 {
@@ -299,6 +311,9 @@ h4 {
     color: var(--primary-dark);
     margin-bottom: var(--spacing-sm);
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .feature-card p {
@@ -854,27 +869,29 @@ body.sliding {
     }
 
     .features-container {
-        flex-direction: row;
-        /* Horizontal statt vertikal */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 10px;
-        /* Sehr kleiner Abstand */
         padding: 0 5px;
     }
 
     .feature-card {
-        padding: 0 2px;
+        padding: 0;
     }
 
     .feature-card .feature-icon {
         width: 44px;
         height: 44px;
         font-size: 1.1rem;
-        margin-bottom: 8px;
+        margin: 0 auto 8px auto;
     }
 
     .feature-card h3 {
         font-size: 0.8rem;
         margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .feature-card p {
