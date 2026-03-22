@@ -130,7 +130,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const waitlistEmail = document.getElementById('waitlist-email');
     const modalBodyForm = document.getElementById('modal-body-form');
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxMzuQIk_NPRH-On8BDQv6qW_ZIyB67xVH-HvOey6ErRK1YZqModx5ngyCjNQ7yX2Qm/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx2v6bX0qqKbPm9WAH2_QmYg0aM7dANupWFngQxjLvmfJim3tarlEUK_sBBKGFt6u80/exec';
+
+    // --- Analytics Tracking ---
+    const trackMetric = (metric) => {
+        const data = new FormData();
+        data.append('action', 'track');
+        data.append('metric', metric);
+
+        // Very basic device detection
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        data.append('device', isMobile ? 'mobile' : 'desktop');
+
+        fetch(scriptURL, { method: 'POST', body: data }).catch(e => console.error("Tracking error:", e));
+    };
+
+    // Track Page Visit (once per user)
+    if (!localStorage.getItem('balconify_visited')) {
+        trackMetric('page_visit');
+        localStorage.setItem('balconify_visited', 'true');
+    }
 
     // Open Modal Function
     const openModal = (source) => {
@@ -138,12 +157,20 @@ document.addEventListener('DOMContentLoaded', () => {
         waitlistModal.classList.add('active');
     };
 
+    // Button 2: Configurator CTA (Verfügbarkeit & Preis prüfen)
     if (openModalBtn && waitlistModal) {
-        openModalBtn.addEventListener('click', () => openModal('Configurator'));
+        openModalBtn.addEventListener('click', () => {
+            trackMetric('button_2');
+            openModal('Configurator');
+        });
     }
 
+    // Button 1: Hero CTA (15% Rabatt sichern)
     if (heroSubmitBtn && waitlistModal) {
-        heroSubmitBtn.addEventListener('click', () => openModal('Hero Section'));
+        heroSubmitBtn.addEventListener('click', () => {
+            trackMetric('button_1');
+            openModal('Hero Section');
+        });
     }
 
     // Close Modal
