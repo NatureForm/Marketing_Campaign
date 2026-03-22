@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap');
+
 /* ==========================================================================
    Design System & CSS Variables
    ========================================================================== */
@@ -16,12 +18,13 @@
 
     /* Typography */
     --font-main: 'Inter', sans-serif;
+    --font-manrope: 'Manrope', sans-serif;
 
     /* Spacing */
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 4rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 6rem;
 
     /* Shadows & Transitions */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -57,7 +60,7 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-lg);
+    padding: 0 var(--spacing-md);
     box-sizing: border-box;
     overflow-x: hidden;
 }
@@ -120,9 +123,10 @@ h4 {
     background-image: url('assets/header5.png');
     background-size: cover;
     background-position: center;
-    min-height: 85vh;
+    min-height: 65vh;
+    /* Reduced height to take up about a third less space */
     display: flex;
-    align-items: center;
+    flex-direction: column;
     color: white;
 }
 
@@ -132,7 +136,8 @@ h4 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to right, rgba(26, 48, 34, 0.95) 0%, rgba(26, 48, 34, 0.7) 50%, rgba(26, 48, 34, 0.1) 100%);
+    background: rgba(26, 48, 34, 0.75);
+    /* Clean green overlay for readability */
     z-index: 1;
 }
 
@@ -140,70 +145,162 @@ h4 {
     position: relative;
     z-index: 2;
     width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .hero-content {
-    max-width: 600px;
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+}
+
+.hero-text-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 800px;
+}
+
+.hero-cta-wrapper {
+    margin-top: auto;
+    padding-bottom: var(--spacing-md);
 }
 
 .eyebrow {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-family: var(--font-manrope);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
     color: #A3C9AE;
-    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+    content: "";
+    height: 2px;
+    width: 30px;
+    background: #A3C9AE;
 }
 
 .main-heading {
-    font-size: 4rem;
-    margin-bottom: var(--spacing-md);
+    font-family: var(--font-manrope);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.2;
     letter-spacing: -1px;
+    margin-bottom: 1.5rem;
+    color: white;
 }
 
 .sub-heading {
-    font-size: 1.25rem;
-    margin-bottom: var(--spacing-lg);
-    opacity: 0.9;
+    font-family: var(--font-manrope);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
 }
 
-.feature-list {
-    list-style: none;
-    margin-bottom: var(--spacing-xl);
+@media (min-width: 769px) {
+    .hero-content {
+        align-items: flex-start;
+        text-align: left;
+        padding-left: var(--spacing-md);
+    }
+
+    .hero-text-wrapper {
+        align-items: flex-start;
+        max-width: 650px;
+        /* Reduced padding so it fits well within the 65vh container */
+    }
+
+    .hero-cta-wrapper {
+        margin-top: 2.5rem;
+        /* Forces button right under text instead of bottom of screen */
+        margin-bottom: auto;
+        padding-bottom: 0;
+        align-self: flex-start;
+    }
 }
 
-.feature-list li {
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    padding: 10px 15px;
-    margin-bottom: 10px;
+/* ==========================================================================
+   Features Section (3 Bullet Points)
+   ========================================================================== */
+.features-section {
+    padding: var(--spacing-xl) 0;
+    background-color: #FFFFFF;
+    /* Clean white background */
+}
+
+.features-container {
     display: flex;
-    align-items: center;
-    font-weight: 500;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
 }
 
-.feature-list li i {
-    color: var(--accent-yellow);
-    margin-right: 12px;
+.feature-card {
+    flex: 1;
+    text-align: center;
+    padding: var(--spacing-md) var(--spacing-lg);
 }
+
+.feature-card .feature-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #F0FDF4;
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    color: var(--primary-dark);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Removed old .feature-list styling */
 
 .cta-button {
     display: inline-block;
-    background-color: var(--accent-yellow);
-    color: var(--primary-dark);
+    background-color: white;
+    color: black;
     text-decoration: none;
     padding: 16px 32px;
-    border-radius: 8px;
+    border-radius: 4px;
+    /* Eckiger */
     font-weight: 700;
     font-size: 1.1rem;
     transition: all var(--transition-fast);
     box-shadow: var(--shadow-md);
+    font-family: var(--font-manrope);
 }
 
 .cta-button:hover {
-    background-color: var(--accent-yellow-hover);
+    background-color: #f0f0f0;
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -237,13 +334,16 @@ body.sliding {
     max-width: 900px;
     aspect-ratio: 9 / 5;
     margin: 0 auto;
-    border-radius: 12px;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-xl);
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    border: 12px solid #FFFFFF;
+    /* Creates the airy floating white border effect */
+    background: #FFFFFF;
 }
 
 .slider-image {
@@ -701,12 +801,14 @@ body.sliding {
    ========================================================================== */
 @media (max-width: 768px) {
     .hero {
-        min-height: 65vh;
+        min-height: 72vh;
     }
 
     .main-heading {
-        font-size: 2rem;
+        font-size: clamp(2rem, 10vw, 3.5rem);
+        /* Bolder sizing on Mobile */
         margin-bottom: var(--spacing-sm);
+        padding: 0 10px;
     }
 
     .sub-heading {
@@ -718,9 +820,32 @@ body.sliding {
         font-size: 0.75rem;
     }
 
-    .feature-list li {
-        padding: 8px 12px;
-        font-size: 0.9rem;
+    .features-container {
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        padding: 0 var(--spacing-sm);
+    }
+
+    .feature-card {
+        padding: 0 10px;
+    }
+
+    .feature-card h3 {
+        font-size: 1.15rem;
+    }
+
+    .slider-container {
+        border-width: 4px;
+        /* Less border on mobile, but padding on sides via container */
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .before-after-section .container {
+        padding: 0 5%;
+        /* Lots of empty space around slider on mobile */
     }
 
     .hero-content {
@@ -730,6 +855,9 @@ body.sliding {
     .config-phone-mockup {
         padding: 8px;
         border-radius: 32px;
+        max-width: 85%;
+        /* Plenty of negative space around mockup on mobile */
+        margin: 0 auto;
     }
 
     .phone-screen {
@@ -786,6 +914,8 @@ body.sliding {
     .config-phone-mockup {
         padding: 6px;
         border-radius: 24px;
+        max-width: 90%;
+        /* Increase slightly on very small screens but keep margin */
     }
 
     .phone-screen {
