@@ -5,7 +5,14 @@
    ========================================================================== */
 :root {
     /* Colors */
-    --bg-color: #F8F9FA;
+    --bg-light: #FCFBF8;
+    /* Lighter Cream / White */
+    --bg-dark: #F3EFE6;
+    /* Darker Beige / Cream */
+    --bg-color: var(--bg-light);
+    /* Fallback to light */
+    --bg-whiteish: var(--bg-light);
+    /* Components use this as off-white */
     --text-primary: #1F2937;
     --text-secondary: #4B5563;
     --primary-dark: #1A3022;
@@ -67,7 +74,7 @@ body {
 
 /* ==========================================================================
    Typography
-   ========================================================================== */
+   ========================================================================= */
 h1,
 h2,
 h3,
@@ -95,7 +102,10 @@ h4 {
 }
 
 .logo h1 {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
+    font-family: var(--font-manrope);
+    font-weight: 800;
+    letter-spacing: -1px;
     color: white;
 }
 
@@ -241,9 +251,11 @@ h4 {
 .features-section {
     padding-top: var(--spacing-lg);
     /* Reduced from xl to pull it closer to the image */
-    padding-bottom: var(--spacing-xl);
-    background-color: #FFFFFF;
-    /* Clean white background */
+    padding-bottom: var(--spacing-lg);
+    /* Reduced from xl to balance layout */
+    background-color: var(--bg-dark);
+    /* Darker element */
+    border-top: 1px solid #111;
 }
 
 .features-header {
@@ -299,7 +311,7 @@ h4 {
 
 .cta-button {
     display: inline-block;
-    background-color: white;
+    background-color: var(--bg-whiteish);
     color: black;
     text-decoration: none;
     padding: 16px 32px;
@@ -331,7 +343,10 @@ body.sliding {
 
 .before-after-section {
     padding: var(--spacing-xl) 0;
-    background-color: var(--bg-color);
+    overflow: hidden;
+    background-color: var(--bg-light);
+    /* Lighter element */
+    border-top: 1px solid #111;
     text-align: center;
 }
 
@@ -354,9 +369,9 @@ body.sliding {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    border: 12px solid #FFFFFF;
+    border: 12px solid var(--bg-whiteish);
     /* Creates the airy floating white border effect */
-    background: #FFFFFF;
+    background: var(--bg-whiteish);
 }
 
 .slider-image {
@@ -455,7 +470,9 @@ body.sliding {
    ========================================================================== */
 .configurator-section {
     padding: var(--spacing-xl) 0;
-    background: linear-gradient(135deg, #E6EBE7 0%, #FFFFFF 100%);
+    background: var(--bg-dark);
+    /* Darker element again */
+    border-top: 1px solid #111;
     display: flex;
     justify-content: center;
 }
@@ -472,7 +489,7 @@ body.sliding {
 }
 
 .phone-screen {
-    background-color: #F9FAFB;
+    background-color: var(--bg-color);
     border-radius: 32px;
     aspect-ratio: 356 / 750;
     height: auto;
@@ -484,7 +501,7 @@ body.sliding {
 
 .phone-header {
     padding: 40px 20px 20px;
-    background: white;
+    background: var(--bg-whiteish);
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -501,7 +518,7 @@ body.sliding {
 
 .phone-dimensions {
     padding: 20px;
-    background: white;
+    background: var(--bg-whiteish);
     margin-bottom: 10px;
 }
 
@@ -540,7 +557,7 @@ body.sliding {
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
     padding: 0 20px 20px;
-    background: white;
+    background: var(--bg-whiteish);
 }
 
 .module-card {
@@ -663,7 +680,7 @@ body.sliding {
 }
 
 .modal-content {
-    background: white;
+    background: var(--bg-whiteish);
     padding: var(--spacing-xl);
     border-radius: 12px;
     width: 90%;
