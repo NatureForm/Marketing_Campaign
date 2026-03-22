@@ -54,7 +54,7 @@
         <!-- Focused Features Section (The 3 Bullet Points) -->
         <section class="features-section">
             <div class="container">
-                <h2 class="features-header">WARUM BALCONIFY?</h2>
+                <h2 class="section-header">WARUM BALCONIFY?</h2>
                 <div class="features-container">
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-ruler-combined"></i></div>
@@ -78,16 +78,22 @@
         <!-- Before / After Slider Section -->
         <section class="before-after-section" id="galerie">
             <div class="container">
-                <h3 class="section-title">Erlebe die Verwandlung</h3>
+                <h2 class="section-header">ERLEBE DIE VERWANDLUNG</h2>
                 <div class="slider-container" id="ba-slider">
                     <!-- The after image -->
                     <div class="slider-image slider-image-after">
-                        <img src="assets/After/long-boy-after.png" alt="Nachher">
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="assets/After/rental-condo-exterior-after.png">
+                            <img src="assets/After/long-boy-after.png" alt="Nachher">
+                        </picture>
                         <div class="label">NACHHER</div>
                     </div>
                     <!-- The before image -->
                     <div class="slider-image slider-image-before" id="slider-before">
-                        <img src="assets/Prior/long-boy.png" alt="Vorher">
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="assets/Prior/rental-condo-exterior.png">
+                            <img src="assets/Prior/long-boy.png" alt="Vorher">
+                        </picture>
                         <div class="label">VORHER</div>
                     </div>
                     <!-- The slider handle -->
