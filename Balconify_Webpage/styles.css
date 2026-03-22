@@ -963,6 +963,11 @@ body.sliding {
 
     /* Replaced by section-header */
 
+    .modal-content {
+        padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg) var(--spacing-md);
+        width: 95%;
+    }
+
     .trust-elements {
         flex-direction: column;
         align-items: center;
