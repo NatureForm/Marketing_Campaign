@@ -91,6 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'tisch': 'assets/After/balcony-integrated-table-after.png'
     };
 
+    // Preload images to prevent loading delays when switching modules
+    Object.values(imageMap).forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+
     moduleCards.forEach(card => {
         card.addEventListener('click', () => {
             // Remove active class from all

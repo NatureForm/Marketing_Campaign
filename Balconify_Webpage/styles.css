@@ -117,7 +117,7 @@ h4 {
    ========================================================================== */
 .hero {
     position: relative;
-    background-image: url('assets/image.png');
+    background-image: url('assets/header5.png');
     background-size: cover;
     background-position: center;
     min-height: 85vh;

@@ -1,0 +1,12 @@
+{
+  "name": "balconify-webpage",
+  "version": "1.0.0",
+  "description": "Balconify Mockup",
+  "main": "script.js",
+  "scripts": {
+    "dev": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
