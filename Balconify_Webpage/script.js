@@ -1,17 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyooXcbmyt9PbATjWkkha8iS6ad8cr3dBEmGTZx0Cn0PBWAYxU4Ielo5nWo_OfIt3qu/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbznN6Lhi_QoO0-mGWQYTyHrHxVi4iXXrsnDL3s-_Qkhp99itYedV9jbyKwEtrl_d6m_/exec';
 
+    // Session ID management
+    let sessionId = sessionStorage.getItem('balconify_session_id');
+    if (!sessionId) {
+        sessionId = 'sess_' + Math.random().toString(36).substring(2, 15);
+        sessionStorage.setItem('balconify_session_id', sessionId);
+    }
+
+    // UTM persistence
     const urlParams = new URLSearchParams(window.location.search);
+    const getUTM = (key) => {
+        const fromUrl = urlParams.get(key);
+        if (fromUrl) {
+            sessionStorage.setItem('balconify_' + key, fromUrl);
+            return fromUrl;
+        }
+        return sessionStorage.getItem('balconify_' + key) || (key === 'utm_source' ? 'direct' : '-');
+    };
+
     const utms = {
-        source: urlParams.get('utm_source') || 'direct',
-        medium: urlParams.get('utm_medium') || '-',
-        campaign: urlParams.get('utm_campaign') || '-'
+        source: getUTM('utm_source'),
+        medium: getUTM('utm_medium'),
+        campaign: getUTM('utm_campaign')
     };
 
     // --- Analytics Tracking ---
     const trackMetric = (metric) => {
         const data = new FormData();
         data.append('action', 'track');
+        data.append('session_id', sessionId);
         data.append('metric', metric);
 
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -262,6 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = new FormData(waitlistForm);
             data.append('action', 'email');
+            data.append('session_id', sessionId);
 
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             data.append('device', isMobile ? 'mobile' : 'desktop');
