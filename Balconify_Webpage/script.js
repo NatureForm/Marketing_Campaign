@@ -257,8 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Highlight when the step is near the middle of the viewport
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                } else {
-                    // Remove highlight when scrolling past
+                } else if (entry.boundingClientRect.top > window.innerHeight / 2) {
+                    // Remove highlight only when scrolling back up
                     entry.target.classList.remove('active');
                 }
             });

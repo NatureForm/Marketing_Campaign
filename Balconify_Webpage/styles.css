@@ -281,8 +281,8 @@ h4 {
    Features Section (3 Bullet Points)
    ========================================================================== */
 .features-section {
-    padding-top: var(--spacing-xl);
-    padding-bottom: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
     background-color: var(--bg-dark);
     /* Darker element */
     border-top: 1px solid #111;
@@ -318,19 +318,19 @@ h4 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 64px;
-    height: 64px;
+    width: 80px;
+    height: 80px;
     margin: 0 auto var(--spacing-md) auto;
     border-radius: 50%;
     background-color: #F0FDF4;
     color: var(--primary-green);
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .feature-card h3 {
-    font-size: 1.25rem;
+    font-size: 1.6rem;
     color: var(--primary-dark);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -338,9 +338,9 @@ h4 {
 }
 
 .feature-card p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 /* Removed old .feature-list styling */
@@ -389,8 +389,8 @@ body.sliding {
 }
 
 .before-after-section {
-    padding-top: var(--spacing-xl);
-    padding-bottom: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
     overflow: hidden;
     background-color: var(--bg-light);
     /* Lighter element */
@@ -407,6 +407,7 @@ body.sliding {
     aspect-ratio: 9 / 5;
     margin: 0 auto;
     border-radius: 24px;
+    container-type: inline-size;
     overflow: hidden;
     box-shadow: var(--shadow-xl);
     -webkit-user-select: none;
@@ -428,10 +429,11 @@ body.sliding {
 .slider-image picture,
 .slider-image img {
     height: 100%;
-    width: 100%;
-    /* Default if not set */
+    width: 100cqw;
+    /* Keeps image perfectly wide regardless of slider width */
     max-width: none;
     object-fit: cover;
+    object-position: center center;
     -webkit-user-drag: none;
     pointer-events: none;
 }
@@ -514,7 +516,8 @@ body.sliding {
    Configurator Mockup
    ========================================================================== */
 .configurator-section {
-    padding: var(--spacing-xl) 0;
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
     background: var(--bg-dark);
     /* Darker element again */
     border-top: 1px solid #111;
@@ -523,7 +526,7 @@ body.sliding {
 }
 
 .steps-cta-section {
-    padding: var(--spacing-xl) 0 0;
+    padding: var(--spacing-lg) 0 0;
     background: var(--bg-light);
     border-top: 1px solid #111;
 }
@@ -664,7 +667,7 @@ body.sliding {
 
 .phone-modules {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
     padding: 0 20px 20px;
     background: var(--bg-whiteish);
@@ -672,9 +675,11 @@ body.sliding {
 
 .module-card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    padding: 10px 5px;
+    padding: 8px 5px;
+    gap: 6px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     cursor: pointer;
@@ -695,9 +700,8 @@ body.sliding {
 }
 
 .module-card .module-icon {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--primary-dark);
-    margin-bottom: 5px;
 }
 
 .module-card span {
@@ -966,8 +970,8 @@ body.sliding {
     }
 
     .section-header {
-        font-size: 1.2rem;
-        margin-bottom: var(--spacing-md);
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-lg);
     }
 
     .features-container {
@@ -982,23 +986,23 @@ body.sliding {
     }
 
     .feature-card .feature-icon {
-        width: 44px;
-        height: 44px;
-        font-size: 1.1rem;
-        margin: 0 auto 8px auto;
+        width: 56px;
+        height: 56px;
+        font-size: 1.4rem;
+        margin: 0 auto 12px auto;
     }
 
     .feature-card h3 {
-        font-size: 0.8rem;
-        margin-bottom: 5px;
+        font-size: 1rem;
+        margin-bottom: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .feature-card p {
-        font-size: 0.75rem;
-        line-height: 1.3;
+        font-size: 0.8rem;
+        line-height: 1.4;
     }
 
     .slider-container {
@@ -1095,13 +1099,13 @@ body.sliding {
     }
 
     .phone-modules {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 4px;
         padding: 0 8px 10px;
     }
 
     .dimension-inputs {
-        flex-direction: column;
+        flex-direction: row;
         gap: 5px;
     }
 }
