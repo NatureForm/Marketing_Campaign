@@ -1,12 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbznN6Lhi_QoO0-mGWQYTyHrHxVi4iXXrsnDL3s-_Qkhp99itYedV9jbyKwEtrl_d6m_/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyooXcbmyt9PbATjWkkha8iS6ad8cr3dBEmGTZx0Cn0PBWAYxU4Ielo5nWo_OfIt3qu/exec';
 
-    // Session ID management
+    // User ID (persistent)
+    let userId = localStorage.getItem('balconify_user_id');
+    if (!userId) {
+        userId = 'user_' + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem('balconify_user_id', userId);
+    }
+
+    // Session ID management (session-based)
     let sessionId = sessionStorage.getItem('balconify_session_id');
     if (!sessionId) {
         sessionId = 'sess_' + Math.random().toString(36).substring(2, 15);
         sessionStorage.setItem('balconify_session_id', sessionId);
     }
+
+    // System Detection Helpers
+    const getOS = () => {
+        const ua = navigator.userAgent;
+        if (/iPhone|iPad|iPod/i.test(ua)) return 'iOS';
+        if (/Android/i.test(ua)) return 'Android';
+        if (/Windows/i.test(ua)) return 'Windows';
+        if (/Macintosh|Mac OS X/i.test(ua)) return 'MacOS';
+        if (/Linux/i.test(ua)) return 'Linux';
+        return 'Unknown';
+    };
+
+    const getBrowser = () => {
+        const ua = navigator.userAgent;
+        if (ua.indexOf("Edg") > -1) return "Edge";
+        if (ua.indexOf("OPR") > -1 || ua.indexOf("Opera") > -1) return "Opera";
+        if (ua.indexOf("Chrome") > -1) return "Chrome";
+        if (ua.indexOf("Firefox") > -1) return "Firefox";
+        if (ua.indexOf("Safari") > -1) return "Safari";
+        return "Unknown";
+    };
 
     // UTM persistence
     const urlParams = new URLSearchParams(window.location.search);
@@ -29,11 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const trackMetric = (metric) => {
         const data = new FormData();
         data.append('action', 'track');
+        data.append('user_id', userId);
         data.append('session_id', sessionId);
         data.append('metric', metric);
 
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        data.append('device', isMobile ? 'mobile' : 'desktop');
+        data.append('device_type', isMobile ? 'mobile' : 'desktop');
+        data.append('os', getOS());
+        data.append('browser', getBrowser());
 
         data.append('utm_source', utms.source);
         data.append('utm_medium', utms.medium);
@@ -280,12 +311,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = new FormData(waitlistForm);
             data.append('action', 'email');
+            data.append('user_id', userId);
             data.append('session_id', sessionId);
 
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            data.append('device', isMobile ? 'mobile' : 'desktop');
+            data.append('device_type', isMobile ? 'mobile' : 'desktop');
+            data.append('os', getOS());
+            data.append('browser', getBrowser());
             data.append('origin', currentWaitlistOrigin);
             data.append('utm_source', utms.source);
+            data.append('utm_medium', utms.medium);
+            data.append('utm_campaign', utms.campaign);
 
             fetch(scriptURL, { method: 'POST', body: data })
                 .then(response => {
