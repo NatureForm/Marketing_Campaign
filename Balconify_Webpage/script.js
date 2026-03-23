@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyooXcbmyt9PbATjWkkha8iS6ad8cr3dBEmGTZx0Cn0PBWAYxU4Ielo5nWo_OfIt3qu/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyRGIjhD19pWfw40PHdWw8GHzgK8RCA8Ak5toNzuyZaOJuF1g-k5y-fhquszY3VT1EQ/exec';
 
     // User ID (persistent)
     let userId = localStorage.getItem('balconify_user_id');
