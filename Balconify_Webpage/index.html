@@ -22,20 +22,17 @@
     <!-- Header Navigation -->
     <header class="header">
         <div class="container header-container">
-            <div class="logo">
+            <div class="logo" style="cursor: pointer;" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
                 <h1>Balconify</h1>
             </div>
             <nav class="nav">
-                <button class="nav-icon-btn" id="nav-btn-account" aria-label="Account"
-                    onclick="document.getElementById('waitlist-modal').classList.add('active')">
+                <button class="nav-icon-btn" id="nav-btn-account" aria-label="Account">
                     <i class="fa-regular fa-user"></i>
                 </button>
-                <button class="nav-icon-btn" id="nav-btn-grid" aria-label="Konfigurator"
-                    onclick="document.getElementById('waitlist-modal').classList.add('active')">
+                <button class="nav-icon-btn" id="nav-btn-grid" aria-label="Konfigurator">
                     <i class="fa-solid fa-border-all"></i>
                 </button>
-                <button class="nav-icon-btn" id="nav-btn-menu" aria-label="Menü"
-                    onclick="document.getElementById('waitlist-modal').classList.add('active')">
+                <button class="nav-icon-btn" id="nav-btn-menu" aria-label="Menü">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </nav>
@@ -56,7 +53,7 @@
                     </div>
 
                     <div class="hero-cta-wrapper">
-                        <button id="configurator-cta-btn" class="cta-button"
+                        <button id="hero-submit-btn" class="cta-button"
                             style="display:inline-flex; flex-direction:column; align-items:center; gap:2px; box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.2); padding: 18px 40px; font-size:1.15rem;">
                             Jetzt konfigurieren
                             <span style="font-size:0.85rem; font-weight:500; color:#1a1a1a; letter-spacing:0.3px;">Und
@@ -81,12 +78,12 @@
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-cubes"></i></div>
                         <h3><b>Premium <br> Holz</b></h3>
-                        <p>Modular & wetterfest.</p>
+                        <p>modular & wetterfest.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-laptop-code"></i></div>
                         <h3><b>Virtueller <br> Konfigurator</b></h3>
-                        <p>Direkt online Konfigurierbar.</p>
+                        <p>Direkt online konfigurierbar.</p>
                     </div>
                 </div>
             </div>
@@ -252,9 +249,9 @@
                 erstellt oder bearbeitet und dienen ausschließlich zu Illustrationszwecken.
             </p>
             <div class="footer-links" style="margin-top: 10px; font-size: 0.85rem;">
-                <a href="impressum.html"
+                <a href="impressum.html" id="footer-link-impressum"
                     style="color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 10px;">Impressum</a>
-                <a href="datenschutz.html"
+                <a href="datenschutz.html" id="footer-link-datenschutz"
                     style="color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 10px;">Datenschutzerklärung</a>
             </div>
         </div>

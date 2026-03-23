@@ -1,7 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyooXcbmyt9PbATjWkkha8iS6ad8cr3dBEmGTZx0Cn0PBWAYxU4Ielo5nWo_OfIt3qu/exec';
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const utms = {
+        source: urlParams.get('utm_source') || 'direct',
+        medium: urlParams.get('utm_medium') || '-',
+        campaign: urlParams.get('utm_campaign') || '-'
+    };
 
+    // --- Analytics Tracking ---
+    const trackMetric = (metric) => {
+        const data = new FormData();
+        data.append('action', 'track');
+        data.append('metric', metric);
 
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        data.append('device', isMobile ? 'mobile' : 'desktop');
+
+        data.append('utm_source', utms.source);
+        data.append('utm_medium', utms.medium);
+        data.append('utm_campaign', utms.campaign);
+
+        fetch(scriptURL, { method: 'POST', body: data, keepalive: true }).catch(e => console.error("Tracking error:", e));
+    };
+
+    if (!localStorage.getItem('balconify_visited')) {
+        trackMetric('page_visit');
+        localStorage.setItem('balconify_visited', 'true');
+    }
     /* ==============================================
        Before / After Slider Logic
        ============================================== */
@@ -25,8 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Handle sliding movement
+    let hasTrackedSlider = false;
     const moveSlide = (e) => {
         if (!isSliding) return;
+
+        if (!hasTrackedSlider) {
+            trackMetric('Used Slider');
+            hasTrackedSlider = true;
+        }
 
         // Get x coordinate relative to container
         let moveX = e.clientX || (e.touches && e.touches[0].clientX);
@@ -101,13 +133,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     moduleCards.forEach(card => {
         card.addEventListener('click', () => {
+            const moduleType = card.getAttribute('data-module');
+            let metricName = 'Sitzmodul';
+            if (moduleType === 'eck') metricName = 'Eckmodul';
+            else if (moduleType === 'liege') metricName = 'Liegemodul';
+            else if (moduleType === 'tisch') metricName = 'Tischmodul';
+            trackMetric(metricName);
+
             // Remove active class from all
             moduleCards.forEach(c => c.classList.remove('active'));
             // Add active class to clicked
             card.classList.add('active');
 
             // Update preview image with a slight fade effect
-            const moduleType = card.getAttribute('data-module');
             const newImageSrc = imageMap[moduleType] || imageMap['sitz'];
 
             if (previewImg.src !== newImageSrc) {
@@ -133,54 +171,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const waitlistEmail = document.getElementById('waitlist-email');
     const modalBodyForm = document.getElementById('modal-body-form');
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxvwiIcB3IAuAagmP9GtFTfJ3ZQZRXNSpkTzhHHZ5IurE3AHFxTVYqkVTlJmJXb3cK4/exec';
+    const navBtnAccount = document.getElementById('nav-btn-account');
+    const navBtnGrid = document.getElementById('nav-btn-grid');
+    const navBtnMenu = document.getElementById('nav-btn-menu');
+    const footerLinkImpressum = document.getElementById('footer-link-impressum');
+    const footerLinkDatenschutz = document.getElementById('footer-link-datenschutz');
 
-    // --- Analytics Tracking ---
-    const trackMetric = (metric) => {
-        const data = new FormData();
-        data.append('action', 'track');
-        data.append('metric', metric);
-
-        // Very basic device detection
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        data.append('device', isMobile ? 'mobile' : 'desktop');
-
-        fetch(scriptURL, { method: 'POST', body: data }).catch(e => console.error("Tracking error:", e));
-    };
-
-    // Track Page Visit (once per user)
-    if (!localStorage.getItem('balconify_visited')) {
-        trackMetric('page_visit');
-        localStorage.setItem('balconify_visited', 'true');
-    }
+    let currentWaitlistOrigin = 'unknown';
 
     // Open Modal Function
     const openModal = (source) => {
+        currentWaitlistOrigin = source;
         console.log(`Analytics Event: [Intent] Waitlist Triggered from ${source}`);
         waitlistModal.classList.add('active');
     };
 
-    // Button 2: Configurator CTA (Verfügbarkeit & Preis prüfen)
-    if (openModalBtn && waitlistModal) {
-        openModalBtn.addEventListener('click', () => {
-            trackMetric('button_2');
-            openModal('Configurator');
-        });
+    if (navBtnAccount && waitlistModal) {
+        navBtnAccount.addEventListener('click', () => { trackMetric('account'); openModal('account'); });
+    }
+    if (navBtnGrid && waitlistModal) {
+        navBtnGrid.addEventListener('click', () => { trackMetric('checkout'); openModal('checkout'); });
+    }
+    if (navBtnMenu && waitlistModal) {
+        navBtnMenu.addEventListener('click', () => { trackMetric('Sandwich'); openModal('Sandwich'); });
+    }
+    if (footerLinkImpressum) {
+        footerLinkImpressum.addEventListener('click', () => { trackMetric('Impressum'); });
+    }
+    if (footerLinkDatenschutz) {
+        footerLinkDatenschutz.addEventListener('click', () => { trackMetric('Datenschutz'); });
     }
 
-    // Button 1: Hero CTA (15% Rabatt sichern)
     if (heroSubmitBtn && waitlistModal) {
         heroSubmitBtn.addEventListener('click', () => {
-            trackMetric('button_1');
-            openModal('Hero Section');
+            trackMetric('button 1');
+            openModal('button 1');
         });
     }
 
-    // Button 3: Configurator Section CTA (Jetzt konfigurieren)
+    if (openModalBtn && waitlistModal) {
+        openModalBtn.addEventListener('click', () => {
+            trackMetric('button 2');
+            openModal('button 2');
+        });
+    }
+
     if (configuratorCtaBtn && waitlistModal) {
         configuratorCtaBtn.addEventListener('click', () => {
-            trackMetric('button_3');
-            openModal('Configurator CTA');
+            trackMetric('button 3');
+            openModal('button 3');
         });
     }
 
@@ -222,6 +261,12 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             const data = new FormData(waitlistForm);
+            data.append('action', 'email');
+
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            data.append('device', isMobile ? 'mobile' : 'desktop');
+            data.append('origin', currentWaitlistOrigin);
+            data.append('utm_source', utms.source);
 
             fetch(scriptURL, { method: 'POST', body: data })
                 .then(response => {
