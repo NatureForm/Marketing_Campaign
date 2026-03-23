@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+
+
     /* ==============================================
        Before / After Slider Logic
        ============================================== */
@@ -124,13 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const waitlistModal = document.getElementById('waitlist-modal');
     const openModalBtn = document.getElementById('configurator-submit-btn');
     const heroSubmitBtn = document.getElementById('hero-submit-btn');
+    const configuratorCtaBtn = document.getElementById('configurator-cta-btn');
     const closeModalBtn = document.getElementById('modal-close');
     const waitlistForm = document.getElementById('waitlist-form');
     const waitlistSuccess = document.getElementById('modal-success');
     const waitlistEmail = document.getElementById('waitlist-email');
     const modalBodyForm = document.getElementById('modal-body-form');
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx2v6bX0qqKbPm9WAH2_QmYg0aM7dANupWFngQxjLvmfJim3tarlEUK_sBBKGFt6u80/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxvwiIcB3IAuAagmP9GtFTfJ3ZQZRXNSpkTzhHHZ5IurE3AHFxTVYqkVTlJmJXb3cK4/exec';
 
     // --- Analytics Tracking ---
     const trackMetric = (metric) => {
@@ -170,6 +173,14 @@ document.addEventListener('DOMContentLoaded', () => {
         heroSubmitBtn.addEventListener('click', () => {
             trackMetric('button_1');
             openModal('Hero Section');
+        });
+    }
+
+    // Button 3: Configurator Section CTA (Jetzt konfigurieren)
+    if (configuratorCtaBtn && waitlistModal) {
+        configuratorCtaBtn.addEventListener('click', () => {
+            trackMetric('button_3');
+            openModal('Configurator CTA');
         });
     }
 
@@ -233,6 +244,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert("Es gab einen Fehler bei der Anmeldung. Bitte versuche es später noch einmal.");
                 });
         });
+    }
+
+    /* ==============================================
+       Step Number Highlight on Scroll
+       ============================================== */
+    const steps = document.querySelectorAll('.config-step');
+
+    if (steps.length > 0) {
+        const stepObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Highlight when the step is near the middle of the viewport
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    // Remove highlight when scrolling past
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, { threshold: 0.6, rootMargin: '-20% 0px -20% 0px' });
+
+        steps.forEach(step => stepObserver.observe(step));
     }
 
 });

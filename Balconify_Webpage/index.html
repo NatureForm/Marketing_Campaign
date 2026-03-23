@@ -26,7 +26,18 @@
                 <h1>Balconify</h1>
             </div>
             <nav class="nav">
-                <!-- Navigation links disabled for Painted Door squeeze page -->
+                <button class="nav-icon-btn" id="nav-btn-account" aria-label="Account"
+                    onclick="document.getElementById('waitlist-modal').classList.add('active')">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button class="nav-icon-btn" id="nav-btn-grid" aria-label="Konfigurator"
+                    onclick="document.getElementById('waitlist-modal').classList.add('active')">
+                    <i class="fa-solid fa-border-all"></i>
+                </button>
+                <button class="nav-icon-btn" id="nav-btn-menu" aria-label="Menü"
+                    onclick="document.getElementById('waitlist-modal').classList.add('active')">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
@@ -39,7 +50,7 @@
             <div class="container hero-container">
                 <div class="hero-content">
                     <div class="hero-text-wrapper">
-                        <p class="eyebrow">Outdoor Upgrade</p>
+                        <p class="eyebrow">Outdoor Wohnraum</p>
                         <h1 class="main-heading">Dein Balkon. <br> Dein Style.</h1>
                         <p class="sub-heading">Maßgeschneiderte Balkonmöbel zum Wohlfühlen.</p>
                     </div>
@@ -59,7 +70,7 @@
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-ruler-combined"></i></div>
                         <h3>Werkzeugloser Aufbau</h3>
-                        <p>In wenigen Minuten einsatzbereit.</p>
+                        <p>In Minuten montiert.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-cubes"></i></div>
@@ -69,7 +80,7 @@
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-laptop-code"></i></div>
                         <h3>3D Konfigurator</h3>
-                        <p>Direkt virtuell Konfigurieren.</p>
+                        <p>Direkt virtuell Konfigurierbar.</p>
                     </div>
                 </div>
             </div>
@@ -110,6 +121,7 @@
         <!-- Configurator Mockup Section -->
         <section class="configurator-section" id="konfigurator">
             <div class="container configurator-container">
+                <h2 class="section-header">Entdecke deine Balkonlösung</h2>
                 <div class="config-phone-mockup">
                     <div class="phone-screen">
                         <div class="phone-header">
@@ -153,7 +165,39 @@
                         <button id="configurator-submit-btn" class="phone-cta">Verfügbarkeit & Preis prüfen</button>
                     </div>
                 </div>
-
+            </div>
+        </section>
+        <!-- Steps & CTA Section -->
+        <section class="steps-cta-section">
+            <div class="container">
+                <h2 class="section-header">In 4 Schritten zu deinem Traumbalkon</h2>
+                <div class="configurator-steps" id="configurator-steps-container">
+                    <div class="config-step">
+                        <span class="config-step-num">1</span>
+                        <span class="config-step-text">Balkonlandschaft nach Maß — individuell konfigurieren</span>
+                    </div>
+                    <div class="config-step">
+                        <span class="config-step-num">2</span>
+                        <span class="config-step-text">Maßgeschneiderte Fertigung aus hochwertigen
+                            Holzmaterialien</span>
+                    </div>
+                    <div class="config-step">
+                        <span class="config-step-num">3</span>
+                        <span class="config-step-text">Verpackung und Versand innerhalb weniger Tage</span>
+                    </div>
+                    <div class="config-step">
+                        <span class="config-step-num">4</span>
+                        <span class="config-step-text">Werkzeugloser Aufbau in Minuten</span>
+                    </div>
+                </div>
+                <div class="hero-cta-wrapper" style="text-align: center; padding-top: 2rem; padding-bottom: 3rem;">
+                    <button id="configurator-cta-btn" class="cta-button"
+                        style="display:inline-flex; flex-direction:column; align-items:center; gap:2px; background-color:#FBBF24; color:#1A3022; box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.2); padding: 18px 40px; font-size:1.15rem;">
+                        Jetzt konfigurieren
+                        <span style="font-size:0.85rem; font-weight:500; color:#1a1a1a; letter-spacing:0.3px;">Und 15%
+                            Rabatt sichern!</span>
+                    </button>
+                </div>
             </div>
         </section>
 
