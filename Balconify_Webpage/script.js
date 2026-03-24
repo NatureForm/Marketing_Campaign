@@ -333,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => {
                     console.log('Success!', response);
                     console.log("Analytics Event: [Conversion] Waitlist Email Submitted");
+                    fbq('track', 'CompleteRegistration');
                     // Hide form area, show success area
                     modalBodyForm.style.display = 'none';
                     waitlistSuccess.style.display = 'block';
