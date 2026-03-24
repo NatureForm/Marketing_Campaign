@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if (window._balconifyInit) return;
+    window._balconifyInit = true;
+
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyRGIjhD19pWfw40PHdWw8GHzgK8RCA8Ak5toNzuyZaOJuF1g-k5y-fhquszY3VT1EQ/exec';
 
     // User ID (persistent)
@@ -236,13 +239,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (navBtnAccount && waitlistModal) {
-        navBtnAccount.addEventListener('click', () => { trackMetric('account'); openModal('account'); });
+        navBtnAccount.addEventListener('click', () => { trackMetric('account'); fbq('track', 'Lead'); openModal('account'); });
     }
     if (navBtnGrid && waitlistModal) {
-        navBtnGrid.addEventListener('click', () => { trackMetric('checkout'); openModal('checkout'); });
+        navBtnGrid.addEventListener('click', () => { trackMetric('checkout'); fbq('track', 'Lead'); openModal('checkout'); });
     }
     if (navBtnMenu && waitlistModal) {
-        navBtnMenu.addEventListener('click', () => { trackMetric('Sandwich'); openModal('Sandwich'); });
+        navBtnMenu.addEventListener('click', () => { trackMetric('Sandwich'); fbq('track', 'Lead'); openModal('Sandwich'); });
     }
     if (footerLinkImpressum) {
         footerLinkImpressum.addEventListener('click', () => { trackMetric('Impressum'); });
@@ -254,6 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroSubmitBtn && waitlistModal) {
         heroSubmitBtn.addEventListener('click', () => {
             trackMetric('button 1');
+            fbq('track', 'Lead');
             openModal('button 1');
         });
     }
@@ -261,6 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openModalBtn && waitlistModal) {
         openModalBtn.addEventListener('click', () => {
             trackMetric('button 2');
+            fbq('track', 'Lead');
             openModal('button 2');
         });
     }
@@ -268,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (configuratorCtaBtn && waitlistModal) {
         configuratorCtaBtn.addEventListener('click', () => {
             trackMetric('button 3');
+            fbq('track', 'Lead');
             openModal('button 3');
         });
     }
